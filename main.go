@@ -26,7 +26,7 @@ func chooseMethod() {
 	// converting CRLF to LF
 	input = strings.Replace(input, "'\n", "", -1)
 	if input == "Todo" {
-		ChooseTodoOpp()
+		Choosetodo()
 	}
 
 }

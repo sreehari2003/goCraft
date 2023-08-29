@@ -20,10 +20,18 @@ var data = []Todo{}
 
 func addTodo(d *[]Todo) {
 	fmt.Println("Enter the title of your todo")
+	reader := bufio.NewReader(os.Stdin)
+	input, _ := reader.ReadString('\n')
+	var i = Todo{}
+	i.title = input
+	fmt.Println("Enter the description of your todo")
+	input, _ = reader.ReadString('\n')
+	i.desc = input
+	*d = append(*d, i)
 }
 func printTodo(data []Todo) {
 	if len(data) == 0 {
-		fmt.Printf("Your todo list is empty, please try again later\n")
+		fmt.Printf("Your todo list is empty, please add some todo\n")
 	} else {
 		for i := 0; i < len(data); i++ {
 			fmt.Println(data[i].id)
@@ -35,7 +43,7 @@ func printTodo(data []Todo) {
 	}
 }
 
-func ChooseTodoOpp() {
+func Choosetodo() {
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Println("Choose the operation you want to perform on todo")
@@ -45,5 +53,7 @@ func ChooseTodoOpp() {
 
 	if input == "PRINT" {
 		printTodo(data)
+	} else if input == "INSERT" {
+		addTodo(&data)
 	}
 }
