@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -44,16 +43,22 @@ func printTodo(data []Todo) {
 }
 
 func Choosetodo() {
-	reader := bufio.NewReader(os.Stdin)
-
+	reader := bufio.NewScanner(os.Stdin)
+	for k, m := range todoOption {
+		fmt.Println(k, ":", m)
+	}
 	fmt.Println("Choose the operation you want to perform on todo")
-	input, _ := reader.ReadString('\n')
-	// converting CRLF to LF
-	input = strings.Replace(input, "'\n", "", -1)
+	reader.Scan()
+	input := reader.Text()
 
 	if input == "PRINT" {
 		printTodo(data)
 	} else if input == "INSERT" {
 		addTodo(&data)
 	}
+}
+
+var todoOption = map[string]string{
+	"PRINT":  "Print all todo",
+	"INSERT": "Add a todo",
 }

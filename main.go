@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -12,7 +11,7 @@ func main() {
 }
 
 func chooseMethod() {
-	reader := bufio.NewReader(os.Stdin)
+	reader := bufio.NewScanner(os.Stdin)
 	for k, m := range options {
 
 		// m is a map[string]interface.
@@ -22,9 +21,9 @@ func chooseMethod() {
 	}
 	fmt.Println("Choose the operation you want to perform")
 
-	input, _ := reader.ReadString('\n')
+	reader.Scan()
+	input := reader.Text()
 	// converting CRLF to LF
-	input = strings.Replace(input, "'\n", "", -1)
 	if input == "Todo" {
 		Choosetodo()
 	}
