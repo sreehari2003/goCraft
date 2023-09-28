@@ -4,9 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+
+	"moul.io/banner"
 )
 
 func main() {
+	fmt.Println(banner.Inline("go craft"))
 	chooseMethod()
 }
 
