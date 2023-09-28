@@ -23,9 +23,11 @@ func addTodo(d *[]Todo) {
 	input, _ := reader.ReadString('\n')
 	var i = Todo{}
 	i.title = input
+
 	fmt.Println("Enter the description of your todo")
 	input, _ = reader.ReadString('\n')
 	i.desc = input
+
 	*d = append(*d, i)
 }
 func printTodo(data []Todo) {
@@ -61,4 +63,5 @@ func Choosetodo() {
 var todoOption = map[string]string{
 	"PRINT":  "Print all todo",
 	"INSERT": "Add a todo",
+	"QUIT":   "To Quit the app",
 }

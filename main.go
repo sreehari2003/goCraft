@@ -4,9 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+
+	"moul.io/banner"
 )
 
 func main() {
+	fmt.Println(banner.Inline("go craft"))
 	chooseMethod()
 }
 
@@ -28,10 +31,18 @@ func chooseMethod() {
 		Choosetodo()
 	}
 
+	if input == "Chat" {
+		fmt.Println("This Feature is under developement!!!")
+	}
+	if input == "Broker" {
+		fmt.Println("This Feature is under development!!!")
+	}
+
 }
 
 var options = map[string]string{
 	"Todo":   "in memory todo app",
 	"Chat":   "A socket based chat app",
 	"Broker": "simple in memory message broker",
+	"Quit":   "To Quit the app",
 }
