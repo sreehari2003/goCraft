@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 	"time"
 )
 
@@ -18,6 +19,10 @@ type Todo struct {
 var data = []Todo{}
 
 func addTodo(d *[]Todo) {
+	uid, err := exec.Command("uuidgen").Output()
+	if err != nil {
+		fmt.Printf("error creating todo")
+	}
 	fmt.Println("Enter the title of your todo")
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
@@ -27,6 +32,7 @@ func addTodo(d *[]Todo) {
 	fmt.Println("Enter the description of your todo")
 	input, _ = reader.ReadString('\n')
 	i.desc = input
+	i.id = string(uid)
 
 	*d = append(*d, i)
 }
@@ -57,6 +63,11 @@ func Choosetodo() {
 		printTodo(data)
 	} else if input == "INSERT" {
 		addTodo(&data)
+	} else {
+		_, ok := todoOption[input]
+		if !ok {
+			fmt.Println("Inavlid input")
+		}
 	}
 }
 
